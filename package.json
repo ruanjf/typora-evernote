@@ -1,0 +1,39 @@
+{
+  "name": "typora-evernote",
+  "version": "1.0.0",
+  "description": "typora plugin for evernote",
+  "main": "index.js",
+  "scripts": {
+    "pkg:deps": "browserify -r evernote -o dist/typora-evernote.deps.min.js --plugin tinyify",
+    "build": "browserify index.js -x evernote -o dist/typora-evernote.min.js",
+    "mix:0": "replace-in-file /Applications/Typora.app/Contents/Resources/TypeMark/index.html --configFile=mix/config.0.js",
+    "mix:1": "replace-in-file /Applications/Typora.app/Contents/Resources/TypeMark/index.html --configFile=mix/config.1.js",
+    "mix:2": "replace-in-file /Applications/Typora.app/Contents/Resources/TypeMark/index.html --configFile=mix/config.2.js",
+    "mix": "npm run mix:0; npm run mix:1 && npm run mix:2",
+    "install": "copyfiles -u 1 dist/* /Applications/Typora.app/Contents/Resources/TypeMark/lib/typora-evernote",
+    "bi": "npm run build && npm run install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruanjf/typora-evernote.git"
+  },
+  "keywords": [
+    "typora",
+    "evernote"
+  ],
+  "author": "ruanjf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruanjf/typora-evernote/issues"
+  },
+  "homepage": "https://github.com/ruanjf/typora-evernote#readme",
+  "dependencies": {
+    "evernote": "^2.0.5"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.0",
+    "replace-in-file": "^6.1.0",
+    "tinyify": "^3.0.0"
+  }
+}
